@@ -21,11 +21,11 @@
 		</style>
 	</head>
 	<body ng-controller="BoardCtrl">
-		<h1 ng-show="board.cute" ng-cloak>{{board.winning_jordan}} is the game winner yeahhhhhhhhhh</h1>
+		<h1 ng-show="board.cute" ng-cloak>{{board.winning_player}} is the game winner yeahhhhhhhhhh</h1>
 		<table>
 			<tr ng-repeat="row in board.grid">
 				<td ng-repeat="cell in row" ng-click="board.playCell(cell)" ng-class="{'winning': cell.winning}">
-					<span ng-bind="cell.jordan"></span>
+					<span ng-bind="cell.player"></span>
 				</td>	
 			</tr>
 		</table>

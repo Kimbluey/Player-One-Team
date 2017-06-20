@@ -37,7 +37,7 @@
         <h3>Search</h3>
         <form method="post" action="#" id="search_form">
           <p>
-            <input class="search" type="text" name="search_field" value="Enter keywords....." />
+            <input class="search" type="text" name="search_field" placeholder="Enter keywords....." />
             <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" />
           </p>
         </form>
@@ -45,13 +45,28 @@
       <div ng-controller="BoardCtrl">
         <!-- Tic Tac Toe Game Content: TODO -->
 		<h1>Tic Tac Toe</h1>
+		
+		<!-- Edit style of the Tic-Tac-Toe board -->
+		<style type="text/css">
+			td {
+				width: 110px;
+				height: 110px;
+				text-align: center;
+				font-size: 50px;
+			}
+			.winning {
+				background-color: pink;
+				color: grey;
+			}
+		</style>
+		
 		<p ng-show="board.cute" ng-cloak>{{board.winning_player}} Wins!</p>
 		<table>
-			<tr ng-repeat="row in board.grid">
-				<td ng-repeat="cell in row" ng-click="board.playCell(cell)" ng-class="{'winning': cell.winning}">
-					<span ng-bind="cell.player"></span>
-				</td>
-			</tr>
+		  <tr ng-repeat="row in board.grid">
+		    <td ng-repeat="cell in row" ng-click="board.playCell(cell)" ng-class="{'winning': cell.winning}">
+		      <span ng-bind="cell.player"></span>
+		    </td>
+		  </tr>
 		</table>
 		<button ng-click="board.reset()">Reset / Play Again</button>
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.js"></script>

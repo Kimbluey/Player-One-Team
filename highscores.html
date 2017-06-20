@@ -1,119 +1,122 @@
 <!DOCTYPE HTML>
 <html>
+	<head>
+		<title>player_one - index</title>
+		<meta name="description" content="website description" />
+		<meta name="keywords" content="website keywords, website keywords" />
+		<meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+		<link rel="stylesheet" type="text/css" href="style/style.css" title="style" />
+	</head>
 
-<head>
-  <title>player_one - index</title>
-  <meta name="description" content="website description" />
-  <meta name="keywords" content="website keywords, website keywords" />
-  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
-  <link rel="stylesheet" type="text/css" href="style/style.css" title="style" />
-</head>
+	<!-- For hiding divs with dropdown selection -->
+	<style>
+		.inv {
+			display: none;
+		}
+	</style>
 
-<style>
-  .inv {
-    display: none;
-  }
-</style>
+	<body>
+		<div id="main">
+			<div id="header">
+				<div id="logo">
+					<div id="logo_text">
+						<!-- Website Header -->
+						<h1><a href="index.html">Player One <span class="logo_colour">Games</span></a></h1>
+						<h2>Free Online Gaming</h2>
+					</div>
+				</div>
 
-<body>
-  <div id="main">
-    <div id="header">
-      <div id="logo">
-        <div id="logo_text">
-		  <!-- Website Header -->
-          <h1><a href="index.html">Player One <span class="logo_colour">Games</span></a></h1>
-          <h2>Free Online Gaming</h2>
-        </div>
-      </div>
-      <div id="menubar">
-        <ul id="menu">
-		  <!-- Navigation Bar -->
-          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
-          <li class="selected"><a href="index.html">Home</a></li>
-          <li><a href="examples.html">Examples</a></li>
-          <li><a href="about.html">About</a></li>
-		  <li><a href="highscores.html">High Scores</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-        </ul>
-      </div>
-    </div>
-    <div id="site_content">
-      <div class="sidebar">
-        <!-- Sidebar Items -->
-        <h3>Search</h3>
-        <form method="post" action="#" id="search_form">
-          <p>
-            <input class="search" type="text" name="search_field" placeholder="Enter keywords....." />
-            <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" />
-          </p>
-        </form>
-      </div>
-      <div id="content">
-        <!-- High Score Content: TODO -->
-		<h1>High Scores</h1>
-		<p>Select a game to view high scores</p>
-		<select id="target">
-          <option value="">Select...</option>
-          <option value="content_1">Pong</option>
-          <option value="content_2">Tic Tac Toe</option>
-        <select>
+				<div id="menubar">
+					<ul id="menu">
+						<!-- Navigation Bar -->
+						<!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+						<li class="selected"><a href="index.html">Home</a></li>
+						<li><a href="examples.html">Examples</a></li>
+						<li><a href="about.html">About</a></li>
+						<li><a href="highscores.html">High Scores</a></li>
+						<li><a href="contact.html">Contact Us</a></li>
+					</ul>
+				</div>
+			</div>
 
-        <div id="content_1" class="inv">
-		  <h2>Pong</h2>
-		  <table style="width:100%; border-spacing:0;">
-            <tr><th>Rank</th><th>User</th><th>Score</th></tr>
-            <tr><td>1</td><td>User1</td><td>Score1</td></tr>
-            <tr><td>2</td><td>User2</td><td>Score2</td></tr>
-            <tr><td>3</td><td>User3</td><td>Score3</td></tr>
-            <tr><td>4</td><td>User4</td><td>Score4</td></tr>
-		    <tr><td>5</td><td>User5</td><td>Score5</td></tr>
-		    <tr><td>6</td><td>User6</td><td>Score6</td></tr>
-		    <tr><td>7</td><td>User7</td><td>Score7</td></tr>
-		    <tr><td>8</td><td>User8</td><td>Score8</td></tr>
-		    <tr><td>9</td><td>User9</td><td>Score9</td></tr>
-		    <tr><td>10</td><td>User10</td><td>Score10</td></tr>
-          </table>
+			<div id="site_content">
+				<div class="sidebar">
+					<!-- Sidebar Items -->
+					<h3>Search</h3>
+					<form method="post" action="#" id="search_form">
+						<p>
+							<input class="search" type="text" name="search_field" placeholder="Enter keywords....." />
+							<input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" />
+						</p>
+					</form>
+				</div>
+
+				<div id="content">
+					<!-- High Score Content: TODO -->
+					<h1>High Scores</h1>
+					<p>Select a game to view high scores</p>
+					<select id="target">
+						<option value="">Select...</option>
+						<option value="content_1">Pong</option>
+						<option value="content_2">Tic Tac Toe</option>
+					</select>
+
+					<div id="content_1" class="inv">
+						<h2>Pong</h2>
+						<table style="width:100%; border-spacing:0;">
+							<tr><th>Rank</th><th>User</th><th>Score</th></tr>
+							<tr><td>1</td><td>User1</td><td>Score1</td></tr>
+							<tr><td>2</td><td>User2</td><td>Score2</td></tr>
+							<tr><td>3</td><td>User3</td><td>Score3</td></tr>
+							<tr><td>4</td><td>User4</td><td>Score4</td></tr>
+							<tr><td>5</td><td>User5</td><td>Score5</td></tr>
+							<tr><td>6</td><td>User6</td><td>Score6</td></tr>
+							<tr><td>7</td><td>User7</td><td>Score7</td></tr>
+							<tr><td>8</td><td>User8</td><td>Score8</td></tr>
+							<tr><td>9</td><td>User9</td><td>Score9</td></tr>
+							<tr><td>10</td><td>User10</td><td>Score10</td></tr>
+						</table>
+					</div>
+
+					<div id="content_2" class="inv">
+						<h2>Tic Tac Toe<h2>
+						<table style="width:100%; border-spacing:0;">
+							<tr><th>Rank</th><th>User</th><th>Score</th></tr>
+							<tr><td>1</td><td>User1</td><td>Score1</td></tr>
+							<tr><td>2</td><td>User2</td><td>Score2</td></tr>
+							<tr><td>3</td><td>User3</td><td>Score3</td></tr>
+							<tr><td>4</td><td>User4</td><td>Score4</td></tr>
+							<tr><td>5</td><td>User5</td><td>Score5</td></tr>
+							<tr><td>6</td><td>User6</td><td>Score6</td></tr>
+							<tr><td>7</td><td>User7</td><td>Score7</td></tr>
+							<tr><td>8</td><td>User8</td><td>Score8</td></tr>
+							<tr><td>9</td><td>User9</td><td>Score9</td></tr>
+							<tr><td>10</td><td>User10</td><td>Score10</td></tr>
+						</table>
+					</div>
+
+					<!-- This script changes page view based on selected option -->
+					<script>
+						document.getElementById('target').addEventListener('change', function () {
+							'use strict';
+							var vis = document.querySelector('.vis'),   
+								target = document.getElementById(this.value);
+							if (vis !== null) {
+								vis.className = 'inv';
+							}
+							if (target !== null ) {
+								target.className = 'vis';
+							}
+						});
+					</script>
+				</div>
+			</div>
+					
+			<div id="content_footer"></div>
+			<div id="footer">
+				Copyright &copy; Player One Team | <a href="http://validator.w3.org/check?uri=referer">HTML5</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> | <a href="http://www.html5webtemplates.co.uk">Simple web templates by HTML5</a>
+			</div>
 		</div>
-		
-        <div id="content_2" class="inv">
-		  <h2>Tic Tac Toe<h2>
-          <table style="width:100%; border-spacing:0;">
-            <tr><th>Rank</th><th>User</th><th>Score</th></tr>
-            <tr><td>1</td><td>User1</td><td>Score1</td></tr>
-            <tr><td>2</td><td>User2</td><td>Score2</td></tr>
-            <tr><td>3</td><td>User3</td><td>Score3</td></tr>
-            <tr><td>4</td><td>User4</td><td>Score4</td></tr>
-		    <tr><td>5</td><td>User5</td><td>Score5</td></tr>
-		    <tr><td>6</td><td>User6</td><td>Score6</td></tr>
-		    <tr><td>7</td><td>User7</td><td>Score7</td></tr>
-		    <tr><td>8</td><td>User8</td><td>Score8</td></tr>
-		    <tr><td>9</td><td>User9</td><td>Score9</td></tr>
-		    <tr><td>10</td><td>User10</td><td>Score10</td></tr>
-          </table>
-		</div>
-
-		<!-- This script changes page view based on selected option -->
-        <script>
-            document
-                .getElementById('target')
-                .addEventListener('change', function () {
-                    'use strict';
-                    var vis = document.querySelector('.vis'),   
-                        target = document.getElementById(this.value);
-                    if (vis !== null) {
-                        vis.className = 'inv';
-                    }
-                    if (target !== null ) {
-                        target.className = 'vis';
-                    }
-            });
-        </script>
-      </div>
-    </div>
-    <div id="content_footer"></div>
-    <div id="footer">
-      Copyright &copy; Player One Team | <a href="http://validator.w3.org/check?uri=referer">HTML5</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> | <a href="http://www.html5webtemplates.co.uk">Simple web templates by HTML5</a>
-    </div>
-  </div>
-</body>
+	</body>
 </html>
+		

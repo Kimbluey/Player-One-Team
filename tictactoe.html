@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html ng-app="handsome">
 
 <head>
   <title>player_one - index</title>
@@ -42,10 +42,20 @@
           </p>
         </form>
       </div>
-      <div id="content">
+      <div ng-controller="BoardCtrl">
         <!-- Tic Tac Toe Game Content: TODO -->
 		<h1>Tic Tac Toe</h1>
-        <p>TODO</p>
+		<p ng-show="board.cute" ng-cloak>{{board.winning_player}} Wins!</p>
+		<table>
+			<tr ng-repeat="row in board.grid">
+				<td ng-repeat="cell in row" ng-click="board.playCell(cell)" ng-class="{'winning': cell.winning}">
+					<span ng-bind="cell.player"></span>
+				</td>
+			</tr>
+		</table>
+		<button ng-click="board.reset()">Reset / Play Again</button>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.js"></script>
+		<script type="text/javascript" src="tictactoe.js"></script>
       </div>
     </div>
     <div id="content_footer"></div>

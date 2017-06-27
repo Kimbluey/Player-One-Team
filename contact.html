@@ -49,17 +49,39 @@
 				
 				<div id="content">
 					<!-- Contact Page Content -->
-					<!-- TODO: Make this actually send an email -->
 					<h1>Contact Us</h1>
 					<p>Questions? Comments? Please send us a message and we'll get back to you!</p>
-					<form action="#" method="post">
+					<form action="/action_page_post.php" method="post" name="contact_form" onsubmit="return validateForm();">
 						<div class="form_settings">
-							<p><span>Name</span><input class="contact" type="text" name="your_name" value="" /></p>
-							<p><span>Email Address</span><input class="contact" type="text" name="your_email" value="" /></p>
-							<p><span>Message</span><textarea class="contact textarea" rows="8" cols="50" name="your_enquiry"></textarea></p>
-							<p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="contact_submitted" value="submit" /></p>
+							<p><span>Name</span><input class="contact" type="text" name="name" value="" required /></p>
+							<p><span>Email Address</span><input class="contact" type="text" name="email" value="" required /></p>
+							<p><span>Message</span><textarea class="contact textarea" rows="8" cols="50" name="message" required></textarea></p>
+							<p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="contact_submitted" value="Submit" /></p>
 						</div>
 					</form>
+					
+					<!-- Form Validation -->
+					<script>
+						function validateForm() {
+							var name = document.forms["contact_form"]["name"].value;	// Grab value of Name field
+							var email = document.forms["contact_form"]["email"].value;	// Grab value of Email Address field
+							// Validate Name
+							if(/^[A-Za-z\s]+$/.test(name)) {
+								// Name is valid
+							} else {
+								// Name is invalid
+								alert("Please enter a valid name.");
+								return false;
+							}
+							// Validate Email
+							var atpos = email.indexOf("@");
+							var dotpos = email.lastIndexOf(".");
+							if (atpos<1 || dotpos<atpos+2 || dotpos+2>=email.length) {
+								alert("Please enter a valid email address.");
+								return false;
+							}
+						}
+					</script>
 				</div>
 			</div>
 			

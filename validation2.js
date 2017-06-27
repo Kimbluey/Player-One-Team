@@ -7,17 +7,8 @@ function validate2() {
 	var image2 = getImage(alphaNumCheck(document.forms["entries"]["password"].value), "password");
 	document.getElementById("Password").appendChild(image2);
 	
-	var image3 = getImage(nameCheck(document.forms["entries"]["fname"].value), "fname");
-	document.getElementByID("FName").appendChild(image3);
-	
-	var image4 = getImage(nameCheck(document.forms["entries"]["lname"].value), "lname");
-	document.getElementByID("LName").appendChild(image4);
-	
-	if (emailCheck(document.forms["entries"]["email"].value) && alphaNumCheck(document.forms["entries"]["password"].value)
-	    && nameCheck(document.forms["entries"]["fname"].value) && nameCheck(document.forms["entries"]["lname"].value)) {
-		
+	if (emailCheck(document.forms["entries"]["email"].value) && alphaNumCheck(document.forms["entries"]["password"].value))
 		window.location.href = "index.html";
-	}
 }
 
 // Images to display for valid (correct.png) and invalid (wrong.png) entries

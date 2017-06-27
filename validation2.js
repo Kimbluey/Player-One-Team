@@ -18,7 +18,7 @@ function getImage(bool, ID) {
 		image = new Image(15, 15);
 		image.id = "image" + ID;
 	}
-	image.src = bool ? './correct.png' : './wrong.png';
+	image.src = bool ? './style/correct.png' : './style/wrong.png';
 	return image;
 }
 

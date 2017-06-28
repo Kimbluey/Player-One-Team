@@ -7,8 +7,8 @@
 		<meta http-equiv="content-type" content="text/html; charset=windows-1252" />
 		<link rel="stylesheet" type="text/css" href="style/style.css" title="style" />
 	</head>
-
-	<body>
+	
+	<body onload = load()>
 		<div id="main">
 			<div id="header">
 			
@@ -51,23 +51,69 @@
 					<!-- Rating Content -->
 					<h1> Rate Our Games </h1>
 					<!-- NOTE: &#9733 is the HTML special character code for a star, i.e. "★" -->
-					<fieldset class="pong_rating">
+					
+					<!-- Pong -->
+					<form name="pong_items"">
 						<h4>Pong</h4>
-						<input type="radio" id="pong_star1" name="pong_rating" value="5" /><label for="star1" title="Horrible">&#9733</label>
-						<input type="radio" id="pong_star2" name="pong_rating" value="4" /><label for="star2" title="Kinda bad">&#9733 &#9733</label>
-						<input type="radio" id="pong_star3" name="pong_rating" value="3" /><label for="star3" title="Meh">&#9733 &#9733 &#9733</label>
-						<input type="radio" id="pong_star4" name="pong_rating" value="2" /><label for="star4" title="Pretty good">&#9733 &#9733 &#9733 &#9733</label>
-						<input type="radio" id="pong_star5" name="pong_rating" value="1" /><label for="star5" title="Awesome">&#9733 &#9733 &#9733 &#9733 &#9733</label>
-					</fieldset>
+						<SELECT name="pong_rating" id="pong_rating">
+							<option value="1">&#9733 </option>
+							<option value="2">&#9733 &#9733 </option>
+							<option value="3">&#9733 &#9733 &#9733 </option>
+							<option value="4">&#9733 &#9733 &#9733 &#9733 </option>
+							<option value="5">&#9733 &#9733 &#9733 &#9733 &#9733 </option>
+						</SELECT>
+					</form>
+					
+					<p></p>
+					<input type="button" value="Save Rating" onclick="saveRating1();" />
+					<input type="button" value="Check Your Rating" onclick="getData1();" />
+					
+					<script>
+						// Save local storage
+						function saveRating1() {
+							var it = document.getElementById("pong_rating");
+							var value = it.options[it.selectedIndex].value;
+							localStorage.setItem("pong_items", value);
+							alert("You have given Pong a rating of " + value + " stars.");
+						}
+						/* Call this when you need to load the data */
+						function getData1() {
+							alert("You have given Pong a rating of " + localStorage.getItem("pong_items") + " stars");
+						}
+					</script>
+					
 					<h1></h1>
-					<fieldset class="ttt_rating">
+					
+					<!-- Tic Tac Toe -->
+					<form name="ttt_items"">
 						<h4>Tic Tac Toe</h4>
-						<input type="radio" id="ttt_star1" name="ttt_rating" value="5" /><label for="star1" title="Horrible">&#9733</label>
-						<input type="radio" id="ttt_star2" name="ttt_rating" value="4" /><label for="star2" title="Kinda bad">&#9733 &#9733</label>
-						<input type="radio" id="ttt_star3" name="ttt_rating" value="3" /><label for="star3" title="Meh">&#9733 &#9733 &#9733</label>
-						<input type="radio" id="ttt_star4" name="ttt_rating" value="2" /><label for="star4" title="Pretty good">&#9733 &#9733 &#9733 &#9733</label>
-						<input type="radio" id="ttt_star5" name="ttt_rating" value="1" /><label for="star5" title="Awesome">&#9733 &#9733 &#9733 &#9733 &#9733</label>
-					</fieldset>
+						<SELECT name="ttt_rating" id="ttt_rating">
+							<option value="1">&#9733 </option>
+							<option value="2">&#9733 &#9733 </option>
+							<option value="3">&#9733 &#9733 &#9733 </option>
+							<option value="4">&#9733 &#9733 &#9733 &#9733 </option>
+							<option value="5">&#9733 &#9733 &#9733 &#9733 &#9733 </option>
+						</SELECT>
+					</form>
+					
+					<p></p>
+					<input type="button" value="Save Rating" onclick="saveRating2();" />
+					<input type="button" value="Check Your Rating" onclick="getData2();" />
+
+					<script>
+						// Save local storage
+						function saveRating2() {
+							var it = document.getElementById("ttt_rating");
+							var value = it.options[it.selectedIndex].value;
+							localStorage.setItem("ttt_items", value);
+							alert("You have given Tic Tac Toe a rating of " + value + " stars.");
+						}
+						/* Call this when you need to load the data */
+						function getData2() {
+							alert("You have given Tic Tac Toe a rating of " + localStorage.getItem("ttt_items") + " stars");
+						}
+					</script>
+					
 				</div>
 			</div>
 			

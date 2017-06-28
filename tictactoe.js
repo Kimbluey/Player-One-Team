@@ -8,7 +8,7 @@ app.controller('BoardCtrl', function($scope, Board){
 
 (function() {
 	var Board = (function() {
-		var SIZE = 3;						// 3 x 3 board
+		var SIZE = 4;						// 4 x 4 board
 		var EMPTY = ' ';					// Empty fill space
 		var Player1 = 'O';					// Player1 (O)
      	var Player2 = 'X'; 					// Player2 (X)

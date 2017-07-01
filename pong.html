@@ -44,177 +44,240 @@
 				</div>
 				
 				<div id="content">
+					<body style="background-color:pink;">
+ Miss: <p id="miss">
+
+<script>
+var miss=0;
+
+var
+ 
+WH  = 770,
+HT = 660,
+
+pi = 3.1415926,
+
+UP   = 38,
+Down = 40,
+
+
+canvas,
+ctx,
+keystate,
+
+
+player = {
+	x: null,
+	y: null,
+
+	width:  40,
+	height: 200,
+
+	move: function() {
+		if (keystate[UP]) this.y -= 9;
+		if (keystate[Down]) this.y += 9;
+		
+		this.y = Math.max(Math.min(this.y, HT - this.height), 0);
+	},
+
+	
+	create: function() {
+	    
+	    ctx.fillStyle="red";
+		
+		ctx.fillRect(this.x, this.y, this.width, this.height);
+	}
+},
+
+
+computer = {
+	x: null,
+	y: null,
+
+	width:  40,
+	height: 200,
+
+	
+	move: function() {
+		
+		var desty = ball.y - (this.height - ball.side)*0.5;
+		
+		this.y += (desty - this.y) * 0.1;
+		
+		this.y = Math.max(Math.min(this.y, HT - this.height), 0);
+	},
+
+	
+	create: function() {
+		ctx.fillRect(this.x, this.y, this.width, this.height);
+	}
+},
+
+
+ball = {
+	x:   null,
+	y:   null,
+	vel: null,
+
+	side:  40,
+	speed: 8,
+
+	
+	
+
+	
+	move: function() {
+	
+		
+		this.x += this.vel.x;
+		this.y += this.vel.y;
+		
+		if (0 > this.y || this.y+this.side > HT) {
+			
+			var offset = this.vel.y < 0 ? 0 - this.y : HT - (this.y+this.side);
+			this.y += 2*offset;
+			
+			this.vel.y *= -2;
+		}
+		var fastchange = function(ax, ay, aw, ah, bx, by, bw, bh) {
+			return ax < bx+bw && ay < by+bh && bx < ax+aw && by < ay+ah;
+		};
+
+		// check againts target paddle to check collision in x
+		// direction
+		var board = this.vel.x < 0 ? player : computer;
+		if (fastchange(board.x, board.y, board.width, board.height,
+				this.x, this.y, this.side, this.side)
+		) {	
+			
+			this.x = board===player ? player.x+player.width : computer.x - this.side;
+			var n = (this.y+this.side - board.y)/(board.height+this.side);
+			var phi = pi*(2*n - 1)/4; 
+			
+			var bang = Math.abs(phi) > 0.2*pi ? 1.5 : 1;
+			this.vel.x = bang*(board===player ? 1 : -1)*this.speed*Math.cos(phi)*1.1;
+			this.vel.y = bang*this.speed*Math.sin(phi)*1.1;
+		}
+
+		
+		if (0 > this.x+this.side || this.x > WH) {
+		
+		alert("you missed it");
+		miss++;
+		
+		document.getElementById("miss").innerHTML=miss;
+		if(miss>2){
+		alert("game over, you can't miss more than 2. Game's exiting!");
+		window.location.href = "index.html";
+		}
+		
+			this.serve(board===player ? 1 : -1);
+		}
+	},
+	serve: function(side) {
+		
+		var r = 0.7;
+		this.x = side===1 ? player.x+player.width : computer.x - this.side;
+		this.y = (HT - this.side)*r;
+		
+		var phi = 0.1*pi*(1 - 2*r);
+		
+		this.vel = {
+			x: side*this.speed*Math.cos(phi),
+			y: this.speed*Math.sin(phi)
+		}
+	},
+
+	
+	create: function() {
+		ctx.fillRect(this.x, this.y, this.side, this.side);
+	}
+};
+
+
+function main() {
+	
+	canvas = document.createElement("canvas");
+	canvas.width = WH;
+	canvas.height = HT;
+	
+	
+	ctx = canvas.getContext("2d");
+	document.body.appendChild(canvas);
+
+	keystate = {};
+	
+	document.addEventListener("keydown", function(evt) {
+		keystate[evt.keyCode] = true;
+	});
+	document.addEventListener("keyup", function(evt) {
+		delete keystate[evt.keyCode];
+	});
+
+	init(); 
+
+	
+	var loop = function() {
+	var miss=0;
+	
+		move();
+		create();
+
+		window.requestAnimationFrame(loop, canvas);
+	};
+	window.requestAnimationFrame(loop, canvas);
+	
+}
+
+
+
+
+
+function move() {
+	ball.move();
+	player.move();
+	computer.move();
+}
+function init() {
+	player.x = player.width;
+	player.y = 300;
+
+	computer.x = WH - (player.width + computer.width);
+	computer.y = (HT - computer.height)/2;
+
+	ball.serve(1);
+}
+
+
+function create() {
+	ctx.fillRect(0, 0, WH, HT);
+
+	ctx.save();
+
+	ctx.fillStyle = "pink";
+
+	ball.create();
+	player.create();
+	computer.create();
+
+	
+	var w = 4;
+	var x = (WH - w)*0.5;
+	var y = 0;
+	var step = HT/20; 
+	while (y < HT) {
+		ctx.fillRect(x, y+step*0.25, w, step*0.5);
+		y += step;
+	}
+
+	ctx.restore();
+}
+
+
+main();
+</script>
+</body>
 					<h1>Pong</h1>
-					Misses: <p id="miss">
-					<script>
-						var miss=0;
-						var WH  = 770, HT = 660, pi = 3.1415926, UP   = 38,
-							Down = 40, canvas, ctx, keystate,
-							player = {
-								x: null,
-								y: null,
-
-								width:  40,
-								height: 200,
-
-								move: function() {
-									if (keystate[UP]) this.y -= 9;
-									if (keystate[Down]) this.y += 9;
-									this.y = Math.max(Math.min(this.y, HT - this.height), 0);
-								},
-								
-								create: function() {
-									ctx.fillStyle="red";
-									ctx.fillRect(this.x, this.y, this.width, this.height);
-								}
-							},
-
-							computer = {
-								x: null,
-								y: null,
-
-								width:  40,
-								height: 200,
-
-								move: function() {
-									var desty = ball.y - (this.height - ball.side)*0.5;
-									this.y += (desty - this.y) * 0.1;
-									this.y = Math.max(Math.min(this.y, HT - this.height), 0);
-								},
-
-								create: function() {
-									ctx.fillRect(this.x, this.y, this.width, this.height);
-								}
-							},
-
-							ball = {
-								x:   null,
-								y:   null,
-								vel: null,
-
-								side:  40,
-								speed: 8,
-
-								move: function() {
-									this.x += this.vel.x;
-									this.y += this.vel.y;
-									
-									if (0 > this.y || this.y+this.side > HT) {
-										var offset = this.vel.y < 0 ? 0 - this.y : HT - (this.y+this.side);
-										this.y += 2*offset;
-										this.vel.y *= -2;
-									}
-									
-									var fastchange = function(ax, ay, aw, ah, bx, by, bw, bh) {
-										return ax < bx+bw && ay < by+bh && bx < ax+aw && by < ay+ah;
-									};
-
-									// check againts target paddle to check collision in x
-									// direction
-									var board = this.vel.x < 0 ? player : computer;
-									if (fastchange(board.x, board.y, board.width, board.height,
-											this.x, this.y, this.side, this.side)) {	
-										this.x = board===player ? player.x+player.width : computer.x - this.side;
-										var n = (this.y+this.side - board.y)/(board.height+this.side);
-										var phi = pi*(2*n - 1)/4; 
-										var bang = Math.abs(phi) > 0.2*pi ? 1.5 : 1;
-										this.vel.x = bang*(board===player ? 1 : -1)*this.speed*Math.cos(phi)*1.1;
-										this.vel.y = bang*this.speed*Math.sin(phi)*1.1;
-									}
-
-									if (0 > this.x+this.side || this.x > WH) {
-										alert("you missed it");
-										miss++;
-										
-										document.getElementById("miss").innerHTML=miss;
-										if(miss>2) {
-											alert("game over, you can't miss more than 2. Game's exiting!");
-											window.location.href = "index.html";
-										}
-										this.serve(board===player ? 1 : -1);
-									}
-								},
-								
-								serve: function(side) {
-									var r = 0.7;
-									this.x = side===1 ? player.x+player.width : computer.x - this.side;
-									this.y = (HT - this.side)*r;
-									
-									var phi = 0.1*pi*(1 - 2*r);
-									
-									this.vel = {
-										x: side*this.speed*Math.cos(phi),
-										y: this.speed*Math.sin(phi)
-									}
-								},
-								
-								create: function() {
-									ctx.fillRect(this.x, this.y, this.side, this.side);
-								}
-							};
-
-						function main() {
-							canvas = document.createElement("canvas");
-							canvas.width = WH;
-							canvas.height = HT;
-							ctx = canvas.getContext("2d");
-							document.body.appendChild(canvas);
-							keystate = {};
-							
-							document.addEventListener("keydown", function(evt) {
-								keystate[evt.keyCode] = true;
-							});
-							
-							document.addEventListener("keyup", function(evt) {
-								delete keystate[evt.keyCode];
-							});
-
-							init(); 
-
-							var loop = function() {
-							var miss=0;
-								move();
-								create();
-								window.requestAnimationFrame(loop, canvas);
-							};
-							window.requestAnimationFrame(loop, canvas);
-						}
-
-						function move() {
-							ball.move();
-							player.move();
-							computer.move();
-						}
-						function init() {
-							player.x = player.width;
-							player.y = 300;
-
-							computer.x = WH - (player.width + computer.width);
-							computer.y = (HT - computer.height)/2;
-
-							ball.serve(1);
-						}
-
-						function create() {
-							ctx.fillRect(0, 0, WH, HT);
-							ctx.save();
-							ctx.fillStyle = "pink";
-							ball.create();
-							player.create();
-							computer.create();
-							
-							var w = 4;
-							var x = (WH - w)*0.5;
-							var y = 0;
-							var step = HT/20; 
-							while (y < HT) {
-								ctx.fillRect(x, y+step*0.25, w, step*0.5);
-								y += step;
-							}
-							ctx.restore();
-						}
-						main();
-					</script>
 					<p></p>
 				</div>
 			</div>
